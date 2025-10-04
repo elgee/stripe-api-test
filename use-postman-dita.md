@@ -38,7 +38,7 @@ To get a secret API key from Stripe:
 2. Create a new collection named "Stripe API Tests"
 3. Set collection-level authorization:
     - Type: Basic Auth
-    - Username: Your test API key (e.g., `sk_test_4eC39HqLyjWDarjtT1zdp7dc`)
+    - Username: Your test API key (e.g., `sk_test_...`)
     - Password: Leave blank
 4. Set base URL variable: `https://api.stripe.com/v1`
 
@@ -63,7 +63,7 @@ pm.test("Response contains payment_intent object", function () {
 
 pm.test("Amount is correct", function () {
     var jsonData = pm.response.json();
-    pm.expect(jsonData.amount).to.eql(2000);
+    pm.expect(jsonData.amount).to.eql(5000);
 });
 
 pm.test("Status is requires_payment_method", function () {
@@ -75,9 +75,9 @@ pm.test("Status is requires_payment_method", function () {
 pm.environment.set("payment_intent_id", pm.response.json().id);
 ```
 
-## Common Issues and Solutions
+## Common problems
 
-### Issue: Authentication Fails
+### Issue: Authentication fails
 
 **Symptoms:** All requests return 401 Unauthorized
 
@@ -88,7 +88,7 @@ pm.environment.set("payment_intent_id", pm.response.json().id);
 - Ensure colon (`:`) is present after key in cURL: `-u sk_test_key:`
 - Verify Stripe account is active
 
-### Issue: Payment Intent Creation Fails
+### Issue: Payment Intent creation fails
 
 **Symptoms:** 400 Bad Request when creating Payment Intent
 
@@ -96,31 +96,4 @@ pm.environment.set("payment_intent_id", pm.response.json().id);
 
 - Verify `amount` is an integer (cents, not dollars)
 - Check `currency` is a valid 3-letter ISO code
-- Ensure `payment_method_types` is an array
 - Validate all required parameters are included
-
-### Issue: Test Cards Don't Work
-
-**Symptoms:** Card validation errors with test card numbers
-
-**Solutions:**
-
-- Confirm you're in test mode
-- Use complete 16-digit card numbers
-- Ensure expiration date is in the future
-- Use any 3-digit CVC (e.g., 123)
-
-## Test Results Summary
-
-| Category | Tests | Passed | Failed | Notes |
-|----------|-------|--------|--------|-------|
-| Authentication | 3 | 3 | 0 | All scenarios verified |
-| Payment Intents | 5 | 5 | 0 | CRUD operations confirmed |
-| Customers | 4 | 4 | 0 | Including pagination |
-| Error Handling | 6 | 6 | 0 | All error types tested |
-| Test Cards | 4 | 4 | 0 | All scenarios work |
-| Idempotency | 2 | 2 | 0 | Prevents duplicates |
-| SDK Integration | 3 | 3 | 0 | Node.js SDK verified |
-| **Total** | **27** | **27** | **0** | **Documentation accurate** |
-
-
