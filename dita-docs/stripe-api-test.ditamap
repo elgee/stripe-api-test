@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE map PUBLIC "-//OASIS//DTD DITA Map//EN" "map.dtd">
+<map>
+    <title>Testing Stripe API endpoints</title>
+    
+    <topichead navtitle="Introduction">
+        <topicref href="concepts/testing-objectives.dita"/>
+        <topicref href="concepts/test-coverage.dita"/>
+    </topichead>
+    
+    <topichead navtitle="Configuration">
+        <topicref href="tasks/get-stripe-api-key.dita"/>
+        <topicref href="tasks/configure-postman.dita"/>
+    </topichead>
+    
+    <topichead navtitle="Testing">
+        <topicref href="tasks/test-authentication.dita"/>
+        <topicref href="tasks/create-payment-intent.dita"/>
+
+    </topichead>
+    
+    <topichead navtitle="Troubleshooting">
+        <topicref href="troubleshooting/authentication-fails.dita"/>
+        <topicref href="troubleshooting/payment-intent-fails.dita"/>
+    </topichead>
+
+</map>

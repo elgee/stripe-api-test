@@ -1,0 +1,29 @@
+<!DOCTYPE html
+  SYSTEM "about:legacy-compat">
+<html lang="en"><head><meta charset="UTF-8"><meta name="copyright" content="(C) Copyright 2025"><meta name="generator" content="DITA-OT"><meta name="description" content="Overview of the areas covered by Stripe API testing."><title>Test Coverage</title><link rel="stylesheet" type="text/css" href="../commonltr.css"></head><body id="test_coverage"><main role="main"><article role="article" aria-labelledby="ariaid-title1">
+    <h1 class="title topictitle1" id="ariaid-title1">Test Coverage</h1>
+    
+    <div class="body conbody"><p class="shortdesc">Overview of the areas covered by Stripe API testing.</p>
+            <div class="note note note_note"><span class="note__title">Note:</span> <div class="note__body">These instructions have been tested on macOS. Other operating systems may not be fully supported.</div></div>
+        <section class="section"><h2 class="title sectiontitle">Authentication</h2>
+            
+            <p class="p">Verify that valid API keys are accepted and invalid keys are rejected.</p>
+        </section>
+        
+        <section class="section"><h2 class="title sectiontitle">Payment Intents</h2>
+            
+            <p class="p">A Payment Intent is the core object for managing the complete payment process in Stripe. Each Payment Intent represents a single payment attempt and automatically handles authentication requirements and payment method variations. Create a Payment Intent for each customer session in your system.</p>
+        </section>
+        
+        <section class="section"><h2 class="title sectiontitle">Customers</h2>
+            
+            <p class="p">A Customer object is a representation of a customer in your Stripe account. You can store multiple payment methods, shipping addresses, and more on the Customer object, and all fields are optional.</p>
+        </section>
+        
+        <section class="section"><h2 class="title sectiontitle">Currency Handling</h2>
+            
+            <p class="p">Stripe uses ISO currency codes and amounts specified in the smallest currency unit, for example, cents for <code class="ph codeph">usd</code>.</p>
+        </section>
+        
+    </div>
+</article></main></body></html>

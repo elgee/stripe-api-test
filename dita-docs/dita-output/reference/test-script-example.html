@@ -1,0 +1,44 @@
+<!DOCTYPE html
+  SYSTEM "about:legacy-compat">
+<html lang="en"><head><meta charset="UTF-8"><meta name="copyright" content="(C) Copyright 2025"><meta name="generator" content="DITA-OT"><meta name="description" content="Sample test script for validating Payment Intent creation."><title>Example Postman test script</title><link rel="stylesheet" type="text/css" href="../commonltr.css"></head><body id="test_script_example"><main role="main"><article role="article" aria-labelledby="ariaid-title1">
+    <h1 class="title topictitle1" id="ariaid-title1">Example Postman test script</h1>
+    
+    <div class="body refbody"><p class="shortdesc">Sample test script for validating Payment Intent creation.</p>
+        <section class="section"><h2 class="title sectiontitle">Test script for creating the Payment Intent endpoint</h2>
+            
+            <p class="p">Use the following JavaScript code in Postman to validate the Payment Intent endpoint:</p>
+            <pre class="pre codeblock language-javascript"><code>// Test for Create Payment Intent endpoint
+pm.test("Status code is 200", function () {
+    pm.response.to.have.status(200);
+});
+
+pm.test("Response contains payment_intent object", function () {
+    var jsonData = pm.response.json();
+    pm.expect(jsonData.object).to.eql("payment_intent");
+});
+
+pm.test("Amount is correct", function () {
+    var jsonData = pm.response.json();
+    pm.expect(jsonData.amount).to.eql(2000);
+});
+
+pm.test("Status is requires_payment_method", function () {
+    var jsonData = pm.response.json();
+    pm.expect(jsonData.status).to.eql("requires_payment_method");
+});
+
+// Save the payment intent ID for subsequent tests
+pm.environment.set("payment_intent_id", pm.response.json().id);</code></pre>
+        </section>
+        <section class="section"><h2 class="title sectiontitle">Script Explanation</h2>
+            
+            <ul class="ul">
+                <li class="li">Validates HTTP status code 200</li>
+                <li class="li">Confirms response contains a payment_intent object</li>
+                <li class="li">Verifies the amount matches the expected value</li>
+                <li class="li">Checks the payment status</li>
+                <li class="li">Saves the payment intent ID for use in subsequent tests</li>
+            </ul>
+        </section>
+    </div>
+</article></main></body></html>

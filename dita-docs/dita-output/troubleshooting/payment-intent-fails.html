@@ -1,0 +1,32 @@
+<!DOCTYPE html
+  SYSTEM "about:legacy-compat">
+<html lang="en"><head><meta charset="UTF-8"><meta name="copyright" content="(C) Copyright 2025"><meta name="generator" content="DITA-OT"><meta name="description" content="Resolve errors when creating Payment Intent objects."><title>Payment Intent Creation Fails</title><link rel="stylesheet" type="text/css" href="../commonltr.css"></head><body id="payment_intent_fails"><main role="main"><article role="article" aria-labelledby="ariaid-title1">
+    <h1 class="title topictitle1" id="ariaid-title1">Payment Intent Creation Fails</h1>
+    
+    <div class="body troublebody"><p class="shortdesc">Resolve errors when creating Payment Intent objects.</p>
+        <section class="section condition"><h2 class="title sectiontitle">Symptoms</h2>
+            
+            <p class="p">400 Bad Request when creating Payment Intent.</p>
+        </section>
+        <div class="bodydiv troubleSolution">
+            <section class="section cause"><h2 class="title sectiontitle">Possible Causes</h2>
+                
+                <p class="p">Payment Intent creation can fail due to incorrect parameter formatting or missing required fields.</p>
+            </section>
+            <section class="section remedy"><h2 class="title sectiontitle">Solutions</h2>
+                
+                <section><ol class="ol steps"><li class="li step stepexpand">
+                        <span class="ph cmd">Verify <span class="keyword parmname">amount</span> is an integer in cents, not dollars.</span>
+                        <div class="itemgroup info">For example, use <code class="ph codeph">2000</code> for $20.00.</div>
+                    </li><li class="li step stepexpand">
+                        <span class="ph cmd">Check <span class="keyword parmname">currency</span> is a valid 3-letter ISO code.</span>
+                        <div class="itemgroup info">For example: <code class="ph codeph">usd</code>, <code class="ph codeph">eur</code>, <code class="ph codeph">gbp</code>.</div>
+                    </li><li class="li step stepexpand">
+                        <span class="ph cmd">Ensure <span class="keyword parmname">payment_method_types</span> is an array.</span>
+                    </li><li class="li step stepexpand">
+                        <span class="ph cmd">Validate all required parameters are included.</span>
+                    </li></ol></section>
+            </section>
+        </div>
+    </div>
+</article></main></body></html>

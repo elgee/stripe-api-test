@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE task PUBLIC "-//OASIS//DTD DITA Task//EN" "task.dtd">
+<task id="test-authentication">
+    <title>Test authentication</title>
+    <shortdesc>Create a Postman request to verify that your Stripe API key is working correctly.</shortdesc>
+    <taskbody>
+    <context>
+        <p>Testing authentication verifies that your API key is valid and properly configured. This test retrieves your account balance, which requires authentication.</p>
+    </context>
+    
+    <steps>
+        <step>
+        <cmd>Create a new request in your collection.</cmd>
+        <substeps>
+            <substep>
+            <cmd>Select your Stripe API testing collection.</cmd>
+            </substep>
+            <substep>
+            <cmd>Select <uicontrol>Add a request</uicontrol>.</cmd>
+            </substep>
+            <substep>
+            <cmd>Name the request <userinput>Authentication</userinput>. This step is optional, but helpful to keep requests organized.</cmd>
+            </substep>
+        </substeps>
+        </step>
+        <step>
+        <cmd>Configure the request method and URL.</cmd>
+        <substeps>
+            <substep>
+            <cmd>Set the HTTP method to <option>GET</option>.</cmd>
+            </substep>
+            <substep>
+            <cmd>Enter the URL: <userinput>{{base_url}}/balance</userinput></cmd>
+            </substep>
+        </substeps>
+        <info>
+            <p>The balance endpoint requires authentication but no additional parameters.</p>
+        </info>
+        </step>
+        <step>
+        <cmd>Add test scripts to validate the response.</cmd>
+        <substeps>
+            <substep>
+            <cmd>Select the <uicontrol>Scripts</uicontrol> tab.</cmd>
+            </substep>
+            <substep>
+            <cmd>Enter the following JavaScript to test for authentication:</cmd>
+            <info>
+                <codeblock>
+pm.test("Status code is 200", function () {
+    pm.response.to.have.status(200);
+});
+
+pm.test("Response contains balance object", function () {
+    var jsonData = pm.response.json();
+    pm.expect(jsonData.object).to.eql("balance");
+});
+
+pm.test("API key is valid", function () {
+    var jsonData = pm.response.json();
+    pm.expect(jsonData.available).to.exist;
+    pm.expect(jsonData.pending).to.exist;
+});</codeblock>
+            </info>
+            </substep>
+        </substeps>
+        </step>
+        <step>
+        <cmd>Send the request and verify the results.</cmd>
+        <substeps>
+            <substep>
+            <cmd>Select <uicontrol>Send</uicontrol>.</cmd>
+            </substep>
+            <substep>
+            <cmd>Wait for the response to appear.</cmd>
+            </substep>
+            <substep>
+            <cmd>Select the <uicontrol>Test Results</uicontrol> tab.</cmd>
+            </substep>
+            <substep>
+            <cmd>Confirm that all tests pass.</cmd>
+            </substep>
+        </substeps>
+        <stepresult>
+
+            <p>If all tests pass, your authentication is configured correctly. If tests fail, refer to the Troubleshooting section.</p>
+            <fig>
+                <title>Validating authentication</title>
+                    <image href="images/validate-authentication.png" alt="Validate authentication" width="450px"/>
+            </fig>
+        </stepresult>
+        </step>
+    </steps>
+    <result>
+        <p>You have successfully tested authentication with the Stripe API. The response will show your account balance in various currencies.</p>
+    </result>
+
+    </taskbody>
+</task>

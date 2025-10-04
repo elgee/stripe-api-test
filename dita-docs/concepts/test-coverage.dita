@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE concept PUBLIC "-//OASIS//DTD DITA Concept//EN" "concept.dtd">
+<concept id="test_coverage">
+    <title>Types of testing</title>
+    <shortdesc>Overview of tests covered in this guide.</shortdesc>
+    <conbody>
+            <note type="note">These instructions have been tested on macOS. Other operating systems may not be fully supported.</note>
+        <section>
+            <title>Authentication</title>
+            <p>Verify that valid API keys are accepted and invalid keys are rejected.</p>
+        </section>
+        
+        <section>
+            <title>Creating a Payment Intent</title>
+            <p>A Payment Intent is the core object for managing the complete payment process in Stripe. Each Payment Intent represents a single payment attempt and automatically handles authentication requirements and payment method variations.</p>
+        </section>
+        
+        <section>
+            <title>Retrieving a Payment Intent</title>
+            <p>Once a Payment Intent is created, Stripe assigns it an ID. You can test that you can perform a GET request to retrieve the ID.</p>
+        </section>
+
+        <section>
+            <title>Customers</title>
+            <p>A Customer object is a representation of a customer in your Stripe account. You can store multiple payment methods, shipping addresses, and more on the Customer object, and all fields are optional.</p>
+        </section>
+        
+        <section>
+            <title>Currency Handling</title>
+            <p>Stripe uses ISO currency codes and amounts specified in the smallest currency unit, for example, cents for <codeph>usd</codeph>.</p>
+        </section>
+        
+    </conbody>
+</concept>

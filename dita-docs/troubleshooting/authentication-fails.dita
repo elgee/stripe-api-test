@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE troubleshooting PUBLIC "-//OASIS//DTD DITA Troubleshooting//EN" "troubleshooting.dtd">
+<troubleshooting id="authentication_fails">
+    <title>Authentication fails</title>
+    <shortdesc>Resolve authentication errors when testing Stripe API endpoints.</shortdesc>
+    <troublebody>
+        <condition>
+            <title>Symptoms</title>
+            <p>All requests return 401 Unauthorized.</p>
+        </condition>
+        <troubleSolution>
+            <cause>
+                <title>Possible Causes</title>
+                <p>Authentication failures can occur due to incorrect API key configuration or account issues.</p>
+            </cause>
+            <remedy>
+                <title>Solutions</title>
+                <steps>
+                    <step>
+                        <cmd>Verify you're using test mode key that starts with <codeph>sk_test_</codeph>.</cmd>
+                    </step>
+                    <step>
+                        <cmd>Check for extra spaces in the API key.</cmd>
+                    </step>
+                    <step>
+                        <cmd>Ensure colon (<codeph>:</codeph>) is present after key in cURL.</cmd>
+                        <info>Example: <codeph>-u sk_test_key:</codeph></info>
+                    </step>
+                    <step>
+                        <cmd>Verify Stripe account is active.</cmd>
+                    </step>
+                </steps>
+            </remedy>
+        </troubleSolution>
+    </troublebody>
+</troubleshooting>

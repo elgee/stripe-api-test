@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="test_script_example">
+    <title>Example Postman test script</title>
+    <shortdesc>Sample test script for validating Payment Intent creation.</shortdesc>
+    <refbody>
+        <section>
+            <title>Test script for creating the Payment Intent endpoint</title>
+            <p>Use the following JavaScript code in Postman to validate the Payment Intent endpoint:</p>
+            <codeblock outputclass="language-javascript">// Test for Create Payment Intent endpoint
+pm.test("Status code is 200", function () {
+    pm.response.to.have.status(200);
+});
+
+pm.test("Response contains payment_intent object", function () {
+    var jsonData = pm.response.json();
+    pm.expect(jsonData.object).to.eql("payment_intent");
+});
+
+pm.test("Amount is correct", function () {
+    var jsonData = pm.response.json();
+    pm.expect(jsonData.amount).to.eql(5000);
+});
+
+pm.test("Status is requires_payment_method", function () {
+    var jsonData = pm.response.json();
+    pm.expect(jsonData.status).to.eql("requires_payment_method");
+});
+
+// Save the payment intent ID for subsequent tests
+pm.environment.set("payment_intent_id", pm.response.json().id);</codeblock>
+        </section>
+        <section>
+            <title>Script explanation</title>
+            <ul>
+                <li>Validates HTTP status code 200</li>
+                <li>Confirms response contains a payment_intent object</li>
+                <li>Verifies the amount matches the expected value</li>
+                <li>Checks the payment status</li>
+                <li>Saves the payment intent ID for use in subsequent tests</li>
+            </ul>
+        </section>
+        <section>
+            <fig>
+                <title>Creating the Payment Intent</title>
+                    <image href="images/create-payment-intent.png" alt="Stripe Payment Intent created" width="450px"/>
+            </fig>
+        </section>
+    </refbody>
+</reference>

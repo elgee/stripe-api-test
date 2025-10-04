@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE task PUBLIC "-//OASIS//DTD DITA Task//EN" "task.dtd">
+<task id="create-payment-intent">
+  <title>Create Payment Intent</title>
+  <shortdesc>Create a Postman request to generate a new Payment Intent in Stripe.</shortdesc>
+  
+  <taskbody>
+    <context>
+      <p>A Payment Intent guides you through the process of collecting a payment from your customer. Creating a Payment Intent is the first step in accepting a payment.</p>
+    </context>
+    
+    <steps>
+      <step>
+        <cmd>Create a new request in your collection.</cmd>
+        <substeps>
+          <substep>
+            <cmd>Select <uicontrol>Add a request</uicontrol>.</cmd>
+          </substep>
+          <substep>
+            <cmd>Name the request <userinput>Create Payment Intent</userinput>.</cmd>
+          </substep>
+        </substeps>
+      </step>
+      
+      <step>
+        <cmd>Configure the request method and URL.</cmd>
+        <substeps>
+          <substep>
+            <cmd>Set the HTTP method to <option>POST</option>.</cmd>
+          </substep>
+          <substep>
+            <cmd>Enter the URL: <userinput>{{base_url}}/payment_intents</userinput></cmd>
+          </substep>
+        </substeps>
+      </step>
+      
+      <step>
+        <cmd>Add the request body parameters.</cmd>
+        <substeps>
+          <substep>
+            <cmd>Select the <uicontrol>Body</uicontrol> tab on the request pane.</cmd>
+          </substep>
+          <substep>
+            <cmd>Select <option>x-www-form-urlencoded</option>.</cmd>
+          </substep>
+          <substep>
+            <cmd>Enter the following example data:</cmd>
+            <info>
+              <simpletable>
+                <sthead>
+                  <stentry>Key</stentry>
+                  <stentry>Value</stentry>
+                </sthead>
+                <strow>
+                  <stentry>amount</stentry>
+                  <stentry>5000</stentry>
+                </strow>
+                <strow>
+                  <stentry>currency</stentry>
+                  <stentry>usd</stentry>
+                </strow>
+              </simpletable>
+                     
+          <p>The amount is in cents (the smallest currency unit), so 5000 represents $50.00.</p>
+
+              <fig>
+                <title>Creating a Payment Intent request</title>
+                    <image href="images/payment-intent-request.png" alt="Payment intent request" width="450px"/>
+            </fig>
+            </info>
+          </substep>
+        </substeps>
+
+      </step>
+      
+      <step>
+        <cmd>Add test scripts to validate the response.</cmd>
+        <substeps>
+          <substep>
+            <cmd>Select the <uicontrol>Scripts</uicontrol> tab on the request pane.</cmd>
+        </substep>
+        <substep>
+        <cmd>Select <option>Post-res</option>.</cmd>
+          </substep>
+          <substep>
+            <cmd>Enter the following JavaScript to test creation of the Payment Intent endpoint:</cmd>
+            <info>
+              <codeblock>
+// Test for Create Payment Intent endpoint
+pm.test("Status code is 200", function () {
+    pm.response.to.have.status(200);
+});
+
+pm.test("Response contains payment_intent object", function () {
+    var jsonData = pm.response.json();
+    pm.expect(jsonData.object).to.eql("payment_intent");
+});
+
+pm.test("Amount is correct", function () {
+    var jsonData = pm.response.json();
+    pm.expect(jsonData.amount).to.eql(5000);// This should match the amount set in the body
+});
+
+pm.test("Currency is correct", function () {
+    var jsonData = pm.response.json();
+    pm.expect(jsonData.currency).to.eql("usd");// This should match the currency set in the body
+});
+
+// Save the payment intent ID for subsequent tests
+pm.environment.set("payment_intent_id", pm.response.json().id);</codeblock>
+            </info>
+          </substep>
+        </substeps>
+        <info>
+          <p>The last line saves the Payment Intent ID to an environment variable so you can use it in other requests.</p>
+        </info>
+      </step>
+      
+      <step>
+        <cmd>Send the request and verify the results.</cmd>
+        <substeps>
+            <substep>
+            <cmd>Select <uicontrol>Send</uicontrol>.</cmd>
+            </substep>
+            <substep>
+            <cmd>Wait for the response to appear.</cmd>
+            </substep>
+            <substep>
+            <cmd>Select the <uicontrol>Test Results</uicontrol> tab on the response pane.</cmd>
+            </substep>
+            <substep>
+            <cmd>Confirm that all tests pass.</cmd>
+            </substep>
+        </substeps>
+                <stepresult>
+
+            <p>If all tests pass, You have successfully created a Payment Intent. If tests fail, refer to the Troubleshooting section.</p>
+            <fig>
+                <title>Successful testing of a Payment Intent request</title>
+                    <image href="images/payment-intent-create.png" alt="Successful Payment Intent testing" width="450px"/>
+            </fig>
+        </stepresult>
+      </step>
+    </steps>
+    
+    <result>
+      <p>You have successfully created a Payment Intent. The response contains a unique ID that you can use to continue the payment process.</p>
+    </result>
+    
+
+  </taskbody>
+</task>

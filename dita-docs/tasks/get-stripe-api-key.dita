@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE task PUBLIC "-//OASIS//DTD DITA Task//EN" "task.dtd">
+<task id="get_stripe_api_key">
+    <title>Get a Stripe secret API key</title>
+    <shortdesc>Get a Stripe secret API key for testing purposes.</shortdesc>
+    <taskbody>
+        <context>
+            <p>Before you can test the Stripe API, get a secret API key from your Stripe account.</p>
+        </context>
+        <steps>
+            <step>
+                <cmd>Sign up for Stripe if you do not already have an account.</cmd>
+                <info>Go to <xref href="https://dashboard.stripe.com/register" format="html" scope="external">https://dashboard.stripe.com/register</xref>.</info>
+            </step>
+            <step>
+                <cmd>Skip the business information questions.</cmd>
+            </step>
+            <step>
+                <cmd>Select <uicontrol>Go to sandbox</uicontrol>.</cmd>
+            </step>
+            <step>
+                <cmd>Select <uicontrol>Got it</uicontrol> under <uicontrol>Verify your business</uicontrol>.</cmd>
+            </step>
+            <step>
+                <cmd>Select the <uicontrol>Secret key</uicontrol> to copy it.</cmd>
+            </step>
+            <step>
+                <cmd>Store the copied secret key in a secure location.</cmd>
+            </step>
+        </steps>
+    </taskbody>
+</task>

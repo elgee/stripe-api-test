@@ -1,0 +1,31 @@
+<!DOCTYPE html
+  SYSTEM "about:legacy-compat">
+<html lang="en"><head><meta charset="UTF-8"><meta name="copyright" content="(C) Copyright 2025"><meta name="generator" content="DITA-OT"><meta name="description" content="Resolve authentication errors when testing Stripe API endpoints."><title>Authentication Fails</title><link rel="stylesheet" type="text/css" href="../commonltr.css"></head><body id="authentication_fails"><main role="main"><article role="article" aria-labelledby="ariaid-title1">
+    <h1 class="title topictitle1" id="ariaid-title1">Authentication Fails</h1>
+    
+    <div class="body troublebody"><p class="shortdesc">Resolve authentication errors when testing Stripe API endpoints.</p>
+        <section class="section condition"><h2 class="title sectiontitle">Symptoms</h2>
+            
+            <p class="p">All requests return 401 Unauthorized.</p>
+        </section>
+        <div class="bodydiv troubleSolution">
+            <section class="section cause"><h2 class="title sectiontitle">Possible Causes</h2>
+                
+                <p class="p">Authentication failures can occur due to incorrect API key configuration or account issues.</p>
+            </section>
+            <section class="section remedy"><h2 class="title sectiontitle">Solutions</h2>
+                
+                <section><ol class="ol steps"><li class="li step stepexpand">
+                        <span class="ph cmd">Verify you're using test mode key that starts with <code class="ph codeph">sk_test_</code>.</span>
+                    </li><li class="li step stepexpand">
+                        <span class="ph cmd">Check for extra spaces in the API key.</span>
+                    </li><li class="li step stepexpand">
+                        <span class="ph cmd">Ensure colon (<code class="ph codeph">:</code>) is present after key in cURL.</span>
+                        <div class="itemgroup info">Example: <code class="ph codeph">-u sk_test_key:</code></div>
+                    </li><li class="li step stepexpand">
+                        <span class="ph cmd">Verify Stripe account is active.</span>
+                    </li></ol></section>
+            </section>
+        </div>
+    </div>
+</article></main></body></html>

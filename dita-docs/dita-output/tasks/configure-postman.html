@@ -1,0 +1,64 @@
+<!DOCTYPE html
+  SYSTEM "about:legacy-compat">
+<html lang="en"><head><meta charset="UTF-8"><meta name="copyright" content="(C) Copyright 2025"><meta name="generator" content="DITA-OT"><meta name="description" content="Set up Postman for testing Stripe API endpoints."><title>Configure Postman</title><link rel="stylesheet" type="text/css" href="../commonltr.css"></head><body id="configure_postman"><main role="main"><article role="article" aria-labelledby="ariaid-title1">
+    <h1 class="title topictitle1" id="ariaid-title1">Configure Postman</h1>
+    
+    <div class="body taskbody"><p class="shortdesc">Set up Postman for testing Stripe API endpoints.</p>
+        <section class="section prereq">
+            <p class="p">You must have a Stripe secret API key before configuring Postman.</p>
+        </section>
+        <section><ol class="ol steps"><li class="li step stepexpand">
+                <span class="ph cmd">Download and install Postman.</span>
+                <div class="itemgroup info">Navigate to <a class="xref" href="https://www.postman.com/downloads/" target="_blank" rel="external noopener">https://www.postman.com/downloads/</a>.</div>
+            </li><li class="li step stepexpand">
+                <span class="ph cmd">Store your secret key securely.</span>
+                <ol type="a" class="ol substeps">
+                    <li class="li substep">
+                        <span class="ph cmd">Go to <span class="ph uicontrol">Vault</span> on the bottom menu.</span>
+                    </li>
+                    <li class="li substep">
+                        <span class="ph cmd">Enter a <span class="ph uicontrol">Key</span> name, for example <kbd class="ph userinput">STRIPE_SECRET_KEY</kbd>.</span>
+                    </li>
+                    <li class="li substep">
+                        <span class="ph cmd">Enter the Stripe secret API key in <span class="ph uicontrol">Value</span>.</span>
+                    </li>
+                    <li class="li substep">
+                        <span class="ph cmd">Leave <span class="ph uicontrol">Allowed domains</span> blank.</span>
+                    </li>
+                </ol>
+                <div class="itemgroup stepresult">Your secret key is now stored securely and can be referenced in the format <code class="ph codeph">{{vault:KEY_NAME}}</code>, where <var class="keyword varname">KEY_NAME</var> is your Key name. For example, <code class="ph codeph">{{vault:STRIPE_SECRET_KEY}}</code>.</div>
+            </li><li class="li step stepexpand">
+                <span class="ph cmd">Configure collection authorization.</span>
+                <ol type="a" class="ol substeps">
+                    <li class="li substep">
+                        <span class="ph cmd">Select <span class="ph uicontrol">New</span> and then select <span class="ph uicontrol">Collection</span>. Rename if desired, for example, <kbd class="ph userinput">Stripe API testing</kbd>.</span>
+                    </li>
+                    <li class="li substep">
+                        <span class="ph cmd">Select your collection and then select <span class="ph uicontrol">Auth</span>.</span>
+                    </li>
+                    <li class="li substep">
+                        <span class="ph cmd">Set <span class="ph uicontrol">Type</span> to <span class="keyword option">Basic Auth</span>.</span>
+                    </li>
+                    <li class="li substep">
+                        <span class="ph cmd">Set <span class="ph uicontrol">Username</span> to <kbd class="ph userinput">{{vault:STRIPE_SECRET_KEY}}</kbd> to access the key stored in your vault.</span>
+                    </li>
+                    <li class="li substep">
+                        <span class="ph cmd">Leave <span class="ph uicontrol">Password</span> blank.</span>
+                    </li>
+                </ol>
+            </li><li class="li step stepexpand">
+                <span class="ph cmd">Set the base URL variable.</span>
+                <ol type="a" class="ol substeps">
+                    <li class="li substep">
+                        <span class="ph cmd">Select your collection and then select <span class="ph uicontrol">Variables</span>.</span>
+                    </li>
+                    <li class="li substep">
+                        <span class="ph cmd">Enter a <span class="ph uicontrol">Variable</span> named <kbd class="ph userinput">base_url</kbd>.</span>
+                    </li>
+                    <li class="li substep">
+                        <span class="ph cmd">Set <span class="ph uicontrol">Value</span> to <code class="ph codeph">https://api.stripe.com/v1</code>.</span>
+                    </li>
+                </ol>
+            </li></ol></section>
+    </div>
+</article></main></body></html>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE concept PUBLIC "-//OASIS//DTD DITA Concept//EN" "concept.dtd">
+<concept id="testing_objectives">
+    <title>Testing objectives</title>
+    <shortdesc>This guide demonstrates how to test Stripe's payment endpoints using Postman.</shortdesc>
+    <conbody>
+        <p>The following are the Stripe API endpoint testing objectives:</p>
+        <ul>
+            <li>Verify that all API endpoints function as documented</li>
+            <li>Validate that request/response formats match specifications</li>
+            <li>Confirm that error scenarios produce expected responses</li>
+            <li>Test authentication mechanisms</li>
+        </ul>
+    </conbody>
+</concept>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE task PUBLIC "-//OASIS//DTD DITA Task//EN" "task.dtd">
+<task id="configure_postman">
+    <title>Configure Postman</title>
+    <shortdesc>Set up Postman for testing Stripe API endpoints.</shortdesc>
+    <taskbody>
+        <prereq>
+            <p>You must have a Stripe secret API key before configuring Postman.</p>
+        </prereq>
+        <steps>
+            <step>
+                <cmd>Download and install Postman.</cmd>
+                <info>Navigate to <xref href="https://www.postman.com/downloads/" format="html" scope="external">https://www.postman.com/downloads/</xref>.</info>
+            </step>
+            <step>
+                <cmd>Store your secret key securely.</cmd>
+                <substeps>
+                    <substep>
+                        <cmd>Go to <uicontrol>Vault</uicontrol> on the bottom menu.</cmd>
+                    </substep>
+                    <substep>
+                        <cmd>Enter a <uicontrol>Key</uicontrol> name, for example <userinput>STRIPE_SECRET_KEY</userinput>.</cmd>
+                    </substep>
+                    <substep>
+                        <cmd>Enter the Stripe secret API key in <uicontrol>Value</uicontrol>.</cmd>
+                    </substep>
+                    <substep>
+                        <cmd>Leave <uicontrol>Allowed domains</uicontrol> blank.</cmd>
+                    </substep>
+                </substeps>
+                <stepresult>
+                                            <fig>
+                <title>Adding the secret key to the Postman vault</title>
+                    <image href="images/vault.png" alt="Postman vault with secret key" width="450px"/>
+                </fig>
+                Your secret key is now stored securely and can be referenced in the format <codeph>{{vault:KEY_NAME}}</codeph>, where <varname>KEY_NAME</varname> is your Key name. For example, <codeph>{{vault:STRIPE_SECRET_KEY}}</codeph>.</stepresult>
+            </step>
+            <step>
+                <cmd>Configure collection authorization.</cmd>
+                <substeps>
+                    <substep>
+                        <cmd>Select <uicontrol>New</uicontrol> and then select <uicontrol>Collection</uicontrol>. Rename if desired, for example, <userinput>Stripe API testing</userinput>.</cmd>
+                    </substep>
+                    <substep>
+                        <cmd>Select your collection and then select <uicontrol>Auth</uicontrol>.</cmd>
+                    </substep>
+                    <substep>
+                        <cmd>Set <uicontrol>Type</uicontrol> to <option>Basic Auth</option>.</cmd>
+                    </substep>
+                    <substep>
+                        <cmd>Set <uicontrol>Username</uicontrol> to <userinput>{{vault:STRIPE_SECRET_KEY}}</userinput> to access the key stored in your vault.</cmd>
+                    </substep>
+                    <substep>
+                        <cmd>Leave <uicontrol>Password</uicontrol> blank.</cmd>
+                    </substep>
+                </substeps>
+            </step>
+            <step>
+                <cmd>Set the base URL variable.</cmd>
+                <substeps>
+                    <substep>
+                        <cmd>Select your collection and then select <uicontrol>Variables</uicontrol>.</cmd>
+                    </substep>
+                    <substep>
+                        <cmd>Enter a <uicontrol>Variable</uicontrol> named <userinput>base_url</userinput>.</cmd>
+                    </substep>
+                    <substep>
+                        <cmd>Set <uicontrol>Value</uicontrol> to <codeph>https://api.stripe.com/v1</codeph>.</cmd>
+                    </substep>
+                </substeps>
+            </step>
+        </steps>
+    </taskbody>
+</task>

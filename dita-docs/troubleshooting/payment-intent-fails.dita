@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE troubleshooting PUBLIC "-//OASIS//DTD DITA Troubleshooting//EN" "troubleshooting.dtd">
+<troubleshooting id="payment_intent_fails">
+    <title>Payment Intent creation fails</title>
+    <shortdesc>Resolve errors when creating Payment Intent objects.</shortdesc>
+    <troublebody>
+        <condition>
+            <title>Symptoms</title>
+            <p>400 Bad Request when creating Payment Intent.</p>
+        </condition>
+        <troubleSolution>
+            <cause>
+                <title>Possible Causes</title>
+                <p>Payment Intent creation can fail due to incorrect parameter formatting or missing required fields.</p>
+            </cause>
+            <remedy>
+                <title>Solutions</title>
+                <steps>
+                    <step>
+                        <cmd>Verify <parmname>amount</parmname> is a positive integer.</cmd>
+
+                    </step>
+                    <step>
+                        <cmd>Check <parmname>currency</parmname> is a valid 3-letter ISO code.</cmd>
+                        <info>For example: <codeph>usd</codeph>, <codeph>eur</codeph>, <codeph>jpy</codeph>.
+                                <fig>
+            <title>Failure due to missing required currency</title>
+                <image href="images/invalid-currency.png" alt="Payment Intent failure" width="450px"/>
+        </fig></info>
+                    </step>
+
+                </steps>
+            </remedy>
+        </troubleSolution>
+    </troublebody>
+</troubleshooting>
